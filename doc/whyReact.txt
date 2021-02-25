@@ -1,0 +1,56 @@
+리액트는 언어가 아니라 프레임워크다.
+우리는 사용법에 대해 배울 예정이다.
+
+React.createClass -> Class -> Hooks
+클래스보다 더 함수적으로 사용하는 Hooks!
+
+facebook이 미는 표준 hooks,
+여태 3-4년 동안 시장 점령한 게 class.
+둘 다 동시에 다루는 게 좋을 듯 하다.
+
+
+#리액트를 쓰는 이유?
+
+1) 사용자 경험
+2) 재사용 컴포넌트
+3) 데이터- 화면 일치
+
+사용자 인터페이스를 만들기 위한 JavaScript 라이브러리
+
+SPA : SinglePageApplication
+
+컴포넌트 구성 나눠서 새로고침 되는 부분만 내용을 바꿔준다.
+
+화면 깜빡임 없고. 리소스 많이 안 들고.
+
+사용자 인터페이스, 사용자 경험이 좋아진다.
+네이버는.. 페이지 넘어갈 때 깜빡깜빡거린다. 그거 없음.
+
+페이스북이 리액트 만든 이유가.
+엄청나게 큰 규모의 페이스북.. 전세계에서 제일 큰 규모야.
+JQuery같은 걸로 만들었다? 데이터가 화면에 연동할 때 처리하기가 정말 힘들었을 것!
+
+좋아요 눌렀는데.. 수 많은 "좋아요"중에서 어떤 "좋아요"를 바꿀 것인지.
+페이지를 새로고침한다? 그러면 제일 위로 다시 돌아간다;
+
+
+컴포넌트화. 조각!
+
+
+리액트는 기본적으로 자바스크립트입니다!!! js파일이에요!!!
+
+
+
+//웹팩
+쪼개진 자바스크립트를 html이 실행할 수 있도록 합쳐준다.
+
+
+리액트 프레임워크이기 때문에 스크립트 쓰긴해야 됨
+
+<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+실제 배포할 때는
+
+<script src="https://unpkg.com/react@16/umd/react.production.js"></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.js"></script>

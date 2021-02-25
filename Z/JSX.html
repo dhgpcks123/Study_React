@@ -1,0 +1,44 @@
+<html>
+
+<head>
+   <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+   <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+   <div id="root"></div> <!-- 결과 : <div> id="root"><button>Like</button></div>-->
+   <script type="text/babel">
+      class LikeButton extends React.Component {
+         constructor(props) {
+            super(props);
+            this.state = {
+               liked: false,
+            };
+         }
+         render() {
+            return <button type="submit" onClick={() => { this.setState({ liked: true }) }}>
+               {this.state.liked === true ? 'Liked' : 'Like'}
+            </button>
+            // e(
+            //    'button',
+            //    { onClick: () => { this.setState({ liked: true }) }, type: 'submit' },
+            //    this.state.liked === true ? 'Liked' : 'Like'
+            // );
+         }
+         //못생긴 React... React.createElement("태그", 옵션, 텍스트, 등)..... 태그 처럼 쓰게 해줍시다! 
+      }
+
+   </script>
+   <script type="text/babel">
+      // ReactDOM.render(e(LikeButton), document.querySelector('#root'));
+      //ReactDOM.render(React.createElement(LikeButton), document.querySelector('#root'));
+      // createElement(LikeButton) 대체해서 <LikeButton /> 태그로 만들 수 있게 해줌.
+      // JSX 만세! Babel 만세!
+      ReactDOM.render(<div><LikeButton /><LikeButton /><LikeButton /><LikeButton /></div>, document.querySelector('#root'));
+
+
+   </script>
+</body>
+
+</html>

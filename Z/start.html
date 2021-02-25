@@ -1,0 +1,44 @@
+<html>
+
+<head>
+   <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+   <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+</head>
+
+<body>
+   <div id="root"></div> <!-- 결과 : <div> id="root"><button>Like</button></div>-->
+   <script>
+      const e = React.createElement; //HTML태그 만들기.
+
+      //리액트 안에서 Component 상속.
+      class LikeButton extends React.Component {
+         constructor(props) {
+            super(props);
+            this.state = {
+               liked: false,
+            };
+            // 바뀔 여지가 있는 부분이 상태(state)이다.
+         }
+
+         render() {
+            return e(
+               'button',
+               { onClick: () => { this.setState({ liked: true }) }, type: 'submit' },
+               this.state.liked === true ? 'Liked' : 'Like'
+            );
+            // <button onclick="()=>{ console.log('clicked')}" type="submit">Liked</button>
+            // $('button').text('Liked');처럼 직접 바꿔주지 않음!
+            //어디 존재하는지 모르는 저.. state를 쓰게 됨!
+            //state와 화면을 리액트가 알아서 일치시켜줌.
+         }  //만들겠다! 만들다가 아님
+
+         //onClick! 리액트에서 쓸 땐x 자바스크립트 쓸 땐 Camel법으로 표기
+      }
+   </script>
+   <script>
+      // 실제 rendering은 ReactDOM이 한다.
+      ReactDOM.render(e(LikeButton), document.querySelector('#root'));
+   </script>
+</body>
+
+</html>

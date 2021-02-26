@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+   <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+   <title>Document</title>
+</head>
+
+<body>
+   <div id="root"></div>
+</body>
+<script type="text/babel">
+   //hooks를 사용했을 때 코드가 훨씬 간단해짐
+
+   const GuGuDan = () => {
+      const [first, setFirst] = React.useState(Math.ceil(Math.random() * 9));
+      const [second, setSecond] = React.useState(Math.ceil(Math.random() * 9));
+      const [value, setValue] = React.useState('');
+      const [result, setResult] = React.useState('');
+      const inputRef = React.useRef(null);
+      // const [state, setState] = React.useState({
+      //    first: Math.ceil(Math.random() * 9),
+      //    second: Math.ceil(Math.random() * 9),
+      //    value: '',
+      //    result: '',
+      // }) 이것도 가능은 한데.. set.state할 때 state.value, state.first, state.second처럼 써줌. 되긴하는데?
+      // 부분적으로 쓸 때가 좀 그래. this.setState({ result: '땡', value: '',})처럼. 그러면 first랑 second 사라짐.
+
+      const onSubmitForm = (e) => {
+         e.preventDefault();
+         if (parseInt(value) === first * second) {
+            setResult('정답' + value);
+            setFirst(Math.ceil(Math.random() * 9));
+            setSecond(Math.ceil(Math.random() * 9));
+            setValue('');
+            inputRef.current.focus();
+         } else {
+            setResult('땡' + value);
+            setValue('');
+            inputRef.current.focus();
+         }
+      }
+
+      const onChangeInput = (e) => {
+         setValue(e.target.value);
+      }
+      console.log('렌더링');
+      return (
+         <React.Fragment>
+            <div>{first} 곱하기 {second} 는?</div>
+            <form onSubmit={onSubmitForm}>
+               <input ref={inputRef} onChange={onChangeInput} value={value} />
+               <button id="button" className="">입력!</button>
+            </form>
+            <div id="result">{result}</div>
+         </React.Fragment>
+         // 리액트에선 id말고 class를 못 씀... 왜냐하면 클래스랑 헷갈리기 때문에
+         // 그래서 className을 쓴다.
+         // for도 반복문이랑 겹쳐서 htmlFor을 쓴다.
+      );
+   }
+   // setState나 ref 안 쓸 때 함수 component로 썼었는데..
+   // 여기에도 setState나 ref, useState 함수 안에서 쓸 수 있게 해줘! 난 클래스보다 함수가 좋아!
+   // 리액트 hooks 함수 컴포넌트에 state랑 ref 외 기능 몇 개 추가해준거야.
+
+</script>
+<script type="text/babel">
+   ReactDOM.render(<GuGuDan />, document.querySelector('#root'));
+   // hooks의 장점은.. 코드가 짧아진다는 것!
+   // class와 다른 hooks의 문제점!
+   // class는 render()안에만 재실행 되는데 반해 hooks는 불러온 함수 통째로 새롭게 실행된다.
+   // 지금 처럼 만들었을 땐 class형 컴포넌트 보다 조금 더 느릴 수 있다.
+</script>
+
+</html>

@@ -1,3 +1,4 @@
+<!-- ▶★ -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,7 +33,7 @@
                   first: Math.ceil(Math.random() * 9),
                   second: Math.ceil(Math.random() * 9),
                   value: '',
-               });
+               })
             } else {
                this.setState({
                   result: `${this.state.value} : 땡`,
@@ -45,23 +46,20 @@
 
          render() {
             return (
-               <>
+               <div>
                   <div>{this.state.first}곱하기{this.state.second}는?</div>
                   <form onSubmit={this.onSubmit}>
                      <input type="number" value={this.state.value} onChange={this.onChange} />
                      <button>입력!</button>
                   </form>
                   <div>{this.state.result}</div>
-               </>
-               // 제일 밖 div로 감싸줘야해. 저거 없애면 에러남
-               // 쓸 때 없는 div... <> </> 빈태그로 만들어줄 수 있게 됐음.. 개선되어서!
-               // 바벨이 지원안하는 경우 <React.Fragment>, </React.Fragment> 써 줘
+               </div >
             );
          }
       }
    </script>
    <script type="text/babel">
-      ReactDOM.render(<GuGuDan />, document.querySelector('#root'))
+      ReactDOM.render(<div><GuGuDan /><GuGuDan /><GuGuDan /><GuGuDan /></div>, document.querySelector('#root'))
    </script>
 </body>
 

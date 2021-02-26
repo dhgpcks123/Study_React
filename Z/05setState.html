@@ -1,0 +1,99 @@
+<!-- ▶★ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+   <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+   <title>Document</title>
+</head>
+
+<body>
+   <div id="root"></div>
+   <script type="text/babel">
+      class GuGuDan extends React.Component {
+         constructor(props) {
+            super(props);
+            this.state = {
+               first: Math.ceil(Math.random() * 9),
+               second: Math.ceil(Math.random() * 9),
+               value: '',
+               result: '',
+            };
+         }
+         onSubmit = (e) => {
+            e.preventDefault();
+            if (parseInt(this.state.value) === this.state.first * this.state.second) {
+               this.setState((prevState) => {
+                  //    ▽현재 state
+                  // result: `${this.state.value} : 정답`,
+                  // first: Math.ceil(Math.random() * 9),
+                  // second: Math.ceil(Math.random() * 9),
+                  // value: '',
+                  //└─────바뀔 state───────────────────────┘
+                  //이런 걸 구분하기 위해서 준비 된 API가 있다.
+                  //setState안에다가 함수를 넣고 그 안에서 리턴을 한다.
+                  return {
+                     result: `${prevState.value} : 정답`,
+                     first: Math.ceil(Math.random() * 9),
+                     second: Math.ceil(Math.random() * 9),
+                     value: '',
+                  };
+                  // prevState는 예전 값이 들어있다.
+                  // 나머지는 앞으로 바뀔 값이라고 생각하면 됨.
+               });
+
+               this.setState({
+                  value: this.state.value + 1,
+               });
+               this.setState({
+                  value: this.state.value + 1,
+               });
+               this.setState({
+                  value: this.state.value + 1,
+               });
+               // 새로운 value가 기존 value + 3 x
+               // 기존 value + 1 이 될 수도 있음.
+               // 예전 값을 새로운 state로 만들 때는 arrow function 써주기
+               // js Promise공부할 때 나왔던 개념 같은데?
+               // this.state 들어가게 되면 콜백함수로 사용하기. 동기를 위해!
+               this.setState((prevState) => {
+                  return {
+                     value: prevState.value + 1
+                  }
+               })
+
+            } else {
+               this.setState({
+                  result: `${this.state.value} : 땡`,
+                  value: '',
+               });
+            }
+         }
+         onChange = (e) => this.setState({ value: e.target.value })
+
+
+         render() {
+            return (
+               <div>
+                  <div>{this.state.first}곱하기{this.state.second}는?</div>
+                  <form onSubmit={this.onSubmit}>
+                     <input type="number" value={this.state.value} onChange={this.onChange} />
+                     <button>입력!</button>
+                  </form>
+                  <div>{this.state.result}</div>
+               </div >
+            );
+         }
+      }
+   </script>
+   <script type="text/babel">
+      ReactDOM.render(<div><GuGuDan /><GuGuDan /><GuGuDan /><GuGuDan /></div>, document.querySelector('#root'))
+   </script>
+</body>
+
+</html>

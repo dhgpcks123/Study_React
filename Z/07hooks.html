@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+   <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+   <title>Document</title>
+</head>
+
+<body>
+   <div id="root"></div>
+</body>
+<script type="text/babel">
+   // 리액트는 클래스 쓰지말고 hooks 쓰라고 추천추천해준다!
+   // 클래스 생긴 거
+   // class GuGuDan extends React.Component {
+   //    // state하나로 묶음
+   //    state = {
+   //       first: Math.ceil(Math.random() * 9),
+   //       second: Math.ceil(Math.random() * 9),
+   //       value: '',
+   //       result: '',
+   //    };
+   // }
+
+   // hooks 배워보자
+   //함수형 컴포넌트 하나로 끝
+
+   const GuGuDan = () => {
+      // state 하나씩 분리
+      const [first, setFirst] = React.useState(Math.ceil(Math.random() * 9));
+      // 전용 setState를 만들어줌! setFirst. 분리했음!
+      const [second, setSecond] = React.useState(Math.ceil(Math.random() * 9));
+      const [value, setValue] = React.useState('');
+      const [result, setResult] = React.useState('');
+
+      return <div>{first} {second} {value} {result} Hello, Hooks</div>;
+   }
+   // setState나 ref 안 쓸 때 함수 component로 썼었는데..
+   // 여기에도 setState나 ref, useState 함수 안에서 쓸 수 있게 해줘! 난 클래스보다 함수가 좋아!
+   // 리액트 hooks 함수 컴포넌트에 state랑 ref 외 기능 몇 개 추가해준거야.
+
+</script>
+<script type="text/babel">
+   ReactDOM.render(<GuGuDan />, document.querySelector('#root'));
+</script>
+
+</html>

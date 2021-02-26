@@ -1,3 +1,4 @@
+<!-- ▶★ -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,29 +33,38 @@
                   first: Math.ceil(Math.random() * 9),
                   second: Math.ceil(Math.random() * 9),
                   value: '',
-               });
+               })
             } else {
                this.setState({
                   result: `${this.state.value} : 땡`,
                   value: '',
                });
             }
+            this.input.focus();
          }
          onChange = (e) => this.setState({ value: e.target.value })
 
+         // 값을 입력할 때 마다 focus가 되면 좋겠다.
+         // document.querySelector('input').focus();
+         // 리액트는 웬만하면 직접 dom에다가 작업하지 말고, 리액트에서 접근하는 게 더 좋다.
+         //ref
+         input;
+         onRefInput = (c) => { this.input = c; };
+
 
          render() {
+            console.log('렌더링');
+            //setState를 할 때는 render()함수가 다시 실행된다. render()를 너무 많이 하면 느려지겠지?
+            // onSubmit, onChange 따로 빼둔 게 가독성 때문이기도 한데.. render()될 때 마다 새로 생긴다? 별로잖애
             return (
                <div>
                   <div>{this.state.first}곱하기{this.state.second}는?</div>
                   <form onSubmit={this.onSubmit}>
-                     <input type="number" value={this.state.value} onChange={this.onChange} />
+                     <input ref={this.onRefInput} type="number" value={this.state.value} onChange={this.onChange} />
                      <button>입력!</button>
                   </form>
                   <div>{this.state.result}</div>
                </div >
-               //onclick, onchange, onsubmit, onload, oninput, onfocus, onblur
-               //JS onClick, onChange, onSubmit, onLoad, onInput, onFocus, onBlur
             );
          }
       }

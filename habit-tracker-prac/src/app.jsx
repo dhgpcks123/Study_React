@@ -4,7 +4,7 @@ import Habits from './components/habits'
 function App() {
   return (
     <>
-      <Habits />
+      <Habits/>
     </>
   );
 }

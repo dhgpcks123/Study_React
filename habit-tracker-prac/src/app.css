@@ -42,3 +42,13 @@ button {
   font-size: 2rem;
   color: darkred;
 }
+
+.habit-input{
+  width: 300px;
+  height: 40px;
+}
+
+.habit-button-add{
+  background-color: #11740F;
+  color: white;
+}
